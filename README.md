@@ -1,59 +1,217 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">🅿️ Aplikasi Parkir Digital</h1>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  Sistem Manajemen Parkir berbasis web yang modern, lengkap, dan siap deploy.
 </p>
 
-## About Laravel
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Midtrans-Payment-00B1E1?style=for-the-badge" alt="Midtrans">
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📖 Tentang Proyek
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Aplikasi Parkir Digital** adalah sistem manajemen parkir berbasis web yang dibangun menggunakan framework **Laravel**. Aplikasi ini dirancang untuk mengelola seluruh siklus transaksi parkir — mulai dari kendaraan masuk, pencatatan otomatis, hingga pembayaran dan pencetakan struk — dengan dukungan berbagai metode pembayaran termasuk **QRIS via Midtrans**.
 
-## Learning Laravel
+Sistem ini mendukung **3 peran pengguna** dengan hak akses berbeda, menjadikannya cocok untuk digunakan oleh pengelola parkir skala kecil hingga menengah.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Fitur Utama
 
-## Laravel Sponsors
+### 🚗 Transaksi Kendaraan
+- **Kendaraan Masuk** — Catat plat nomor, jenis kendaraan (motor/mobil/truk), area parkir, pemilik, dan merk/warna.
+- **Generate Tiket Otomatis** — Setiap kendaraan masuk mendapat nomor tiket unik format `TKT-YYYYMMDD-XXXXX`.
+- **Kendaraan Keluar** — Cari transaksi via nomor tiket atau plat nomor, hitung durasi & biaya secara otomatis.
+- **Kalkulasi Biaya Dinamis** — Biaya dihitung per jam berdasarkan jenis kendaraan + **sistem denda otomatis** jika melewati batas waktu yang dikonfigurasi.
+- **Cetak Struk Digital** — Struk berisi detail lengkap transaksi, dapat dikonfigurasi nama & header sesuai kebutuhan.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 💳 Pembayaran
+- **Tunai** — Pembayaran langsung di kasir.
+- **QRIS (via Midtrans Snap)** — Integrasi payment gateway Midtrans untuk pembayaran digital dengan QR Code.
+- **Debit & Kartu Kredit** — Opsi metode pembayaran tambahan.
 
-### Premium Partners
+### 👥 Multi-Role User
+| Role | Akses |
+|------|-------|
+| **Admin** | Kelola semua data: user, area, tarif, kendaraan, pengaturan, log aktivitas |
+| **Petugas** | Proses transaksi masuk/keluar, akses laporan |
+| **Owner** | Lihat pendapatan bulanan, volume kendaraan, riwayat transaksi |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 📊 Dashboard & Laporan
+- **Dashboard Admin** — Statistik total area, pengguna, kendaraan, transaksi + grafik pendapatan 7 hari terakhir.
+- **Dashboard Owner** — Pendapatan bulan ini, total volume kendaraan, kapasitas terisi, transaksi terbaru.
+- **Laporan** — Rekapitulasi transaksi untuk Admin & Petugas.
+- **Log Aktivitas** — Rekam jejak setiap aksi yang dilakukan pengguna di sistem.
 
-## Contributing
+### ⚙️ Pengaturan Sistem
+- Nama aplikasi & header struk yang dapat diubah secara dinamis.
+- Konfigurasi tarif per jam berdasarkan jenis kendaraan.
+- Pengaturan batas waktu & denda per jam jika parkir terlalu lama.
+- Manajemen area parkir dengan kapasitas & status (aktif/nonaktif).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🛠️ Tech Stack
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Komponen | Teknologi |
+|----------|-----------|
+| Backend Framework | Laravel 11 |
+| Bahasa | PHP 8.2 |
+| Database | MySQL |
+| Frontend Build | Vite + Blade |
+| Payment Gateway | Midtrans Snap API |
+| Deployment | Docker, Render, Railway |
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ⚙️ Cara Kerja Sistem
 
-## License
+### Alur Kendaraan Masuk
+```
+Petugas input data kendaraan
+       ↓
+Sistem cek/buat data kendaraan di tb_kendaraan
+       ↓
+Ambil tarif sesuai jenis kendaraan dari tb_tarif
+       ↓
+Generate Nomor Tiket unik (TKT-YYYYMMDD-XXXXX)
+       ↓
+Simpan transaksi ke tb_transaksi (status: masuk)
+       ↓
+Database trigger update jumlah terisi di tb_area_parkir
+       ↓
+Log aktivitas dicatat di tb_log_aktivitas
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Alur Kendaraan Keluar & Pembayaran
+```
+Petugas cari tiket (nomor tiket / plat nomor)
+       ↓
+Sistem hitung durasi: ceil(menit / 60) → dalam jam
+       ↓
+Biaya = Durasi × Tarif/Jam
+       ↓
+Jika durasi > batas waktu → tambah Denda per jam
+       ↓
+Pilih metode bayar (Tunai / QRIS / Debit / Kredit)
+       ↓
+[Jika QRIS] → Request Snap Token ke Midtrans API
+            → User scan QR → Midtrans kirim callback
+            → Status transaksi otomatis diupdate
+       ↓
+Update tb_transaksi (status: keluar, waktu keluar, biaya total)
+       ↓
+Generate & simpan Struk ke tb_struk
+       ↓
+Redirect ke halaman cetak struk
+```
+
+---
+
+## 🚀 Instalasi Lokal
+
+### Prasyarat
+- PHP >= 8.2
+- Composer
+- MySQL
+- Node.js & NPM
+
+### Langkah-langkah
+
+```bash
+# 1. Clone repositori
+git clone https://github.com/daff505/aplikasi_parkir.git
+cd aplikasi_parkir/parkir_app
+
+# 2. Install dependensi PHP
+composer install
+
+# 3. Install dependensi Node.js
+npm install
+
+# 4. Salin file environment
+cp .env.example .env
+
+# 5. Generate app key
+php artisan key:generate
+
+# 6. Konfigurasi database di .env
+# DB_DATABASE=db_aplikasi_parkir
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# 7. Import database
+# Import file: db_aplikasi_parkir.sql ke MySQL Anda
+
+# 8. Build assets
+npm run dev
+
+# 9. Jalankan server
+php artisan serve
+```
+
+Akses aplikasi di: `http://localhost:8000`
+
+---
+
+## 🐳 Deploy dengan Docker
+
+```bash
+# Build image
+docker build -t aplikasi-parkir .
+
+# Jalankan container
+docker run -p 8000:8000 \
+  -e DB_HOST=your_db_host \
+  -e DB_DATABASE=db_aplikasi_parkir \
+  -e DB_USERNAME=your_user \
+  -e DB_PASSWORD=your_password \
+  aplikasi-parkir
+```
+
+Deploy juga tersedia untuk **Render** (via `render.yaml`) dan **Railway** (via `railway.toml` + `nixpacks.toml`).
+
+---
+
+## 🔐 Konfigurasi Midtrans
+
+Tambahkan key berikut ke `.env` untuk mengaktifkan pembayaran QRIS:
+
+```env
+MIDTRANS_SERVER_KEY=your_server_key
+MIDTRANS_CLIENT_KEY=your_client_key
+MIDTRANS_IS_PRODUCTION=false
+```
+
+Daftar akun Midtrans di [https://midtrans.com](https://midtrans.com) untuk mendapatkan API Key.
+
+---
+
+## 📁 Struktur Database Utama
+
+| Tabel | Deskripsi |
+|-------|-----------|
+| `tb_user` | Data pengguna (admin, petugas, owner) |
+| `tb_area_parkir` | Area/zona parkir beserta kapasitas |
+| `tb_kendaraan` | Master data kendaraan |
+| `tb_tarif` | Tarif parkir per jenis kendaraan |
+| `tb_transaksi` | Rekam semua transaksi masuk/keluar |
+| `tb_struk` | Struk/bukti pembayaran |
+| `tb_pengaturan` | Konfigurasi aplikasi (nama, denda, dll) |
+| `tb_log_aktivitas` | Jejak aktivitas pengguna |
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dibuat untuk keperluan akademis. Bebas digunakan dan dimodifikasi.
+
+---
+
+<p align="center">Dibuat dengan ❤️ menggunakan Laravel</p>
